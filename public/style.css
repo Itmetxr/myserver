@@ -1,343 +1,482 @@
-
-/* =========================
-   GLOBAL STYLE
-========================= */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+    color-scheme: dark;
+    --bg: #07111d;
+    --panel: rgba(13, 27, 42, 0.9);
+    --panel-raised: #102237;
+    --panel-soft: #0b1928;
+    --line: rgba(124, 172, 202, 0.17);
+    --text: #e4f1f6;
+    --muted: #8398a9;
+    --cyan: #50d9f2;
+    --cyan-soft: rgba(80, 217, 242, 0.12);
+    --green: #9ee86f;
+    --green-soft: rgba(158, 232, 111, 0.12);
+    --amber: #f6bd60;
+    --shadow: 0 22px 60px rgba(0, 0, 0, 0.3);
 }
+
+* { box-sizing: border-box; }
+
+html { min-width: 320px; background: var(--bg); }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f3f6fb;
-    color: #263445;
+    position: relative;
+    isolation: isolate;
     min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+    color: var(--text);
+    background:
+        radial-gradient(ellipse at 82% -15%, rgba(31, 122, 157, 0.22), transparent 38rem),
+        radial-gradient(ellipse at 0% 45%, rgba(20, 76, 103, 0.14), transparent 34rem),
+        var(--bg);
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
 }
 
-
-/* =========================
-   HEADER
-========================= */
+body::before {
+    position: fixed;
+    z-index: -1;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(92, 149, 178, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(92, 149, 178, 0.035) 1px, transparent 1px);
+    background-size: 34px 34px;
+    content: "";
+    mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
 
 header {
-    background: linear-gradient(135deg, #1769aa, #3498db);
-    color: white;
-    text-align: center;
-    padding: 35px 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    width: min(100% - 48px, 1400px);
+    min-height: 116px;
+    margin: 0 auto;
+    padding: 24px 6px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+}
+
+header::before {
+    display: block;
+    flex: 0 0 auto;
+    width: 4px;
+    height: 46px;
+    border-radius: 4px;
+    background: linear-gradient(var(--cyan), var(--green));
+    box-shadow: 0 0 22px rgba(80, 217, 242, 0.4);
+    content: "";
 }
 
 header h1 {
-    font-size: 30px;
-    margin-bottom: 10px;
+    flex: 1;
+    margin: 0;
+    color: #f0f8fb;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: clamp(20px, 2vw, 27px);
+    font-weight: 700;
+    letter-spacing: 0.015em;
 }
 
 header p {
-    font-size: 15px;
-    opacity: 0.9;
+    margin: 0;
+    color: var(--muted);
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    line-height: 1.6;
+    text-align: right;
+    text-transform: uppercase;
 }
 
-
-/* =========================
-   NAVIGATION BAR
-========================= */
+header p::before {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--green);
+    content: "MISSION CONTROL / IOTE";
+    font-size: 10px;
+}
 
 .navbar {
     display: flex;
-    justify-content: center;
-    gap: 10px;
-    background-color: white;
-    padding: 15px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    align-items: center;
+    gap: 8px;
+    width: min(100% - 48px, 1400px);
+    margin: 22px auto 0;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(9, 22, 35, 0.82);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
+    backdrop-filter: blur(14px);
 }
 
 .tab-btn {
-    border: none;
-    background-color: transparent;
-    color: #526579;
-    padding: 12px 22px;
-    font-size: 15px;
-    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 43px;
+    padding: 0 18px;
+    border: 1px solid transparent;
     border-radius: 8px;
-    transition: 0.3s;
+    color: #91a8b8;
+    background: transparent;
+    font: 600 13px/1 Inter, "Segoe UI", Arial, sans-serif;
+    text-decoration: none;
+    transition: color 160ms ease, background 160ms ease, border-color 160ms ease, transform 160ms ease;
 }
 
+.tab-btn::before {
+    color: #57768a;
+    font: 11px/1 Consolas, "Courier New", monospace;
+}
+
+.tab-btn[data-page="configPage"]::before,
+.tab-btn[href="/config.html"]::before { content: "01"; }
+.tab-btn[data-page="temperaturePage"]::before,
+.tab-btn[href="/form.html"]::before { content: "02"; }
+.tab-btn[data-page="logsPage"]::before,
+.tab-btn[href="/logs.html"]::before { content: "03"; }
+
 .tab-btn:hover {
-    background-color: #e8f3fc;
-    color: #1769aa;
+    transform: translateY(-1px);
+    border-color: var(--line);
+    color: var(--text);
+    background: rgba(80, 217, 242, 0.06);
 }
 
 .tab-btn.active {
-    background-color: #1769aa;
-    color: white;
-}
-
-
-/* =========================
-   MAIN CONTENT
-========================= */
-
-main {
-    max-width: 1100px;
-    margin: 35px auto;
-    padding: 0 20px;
+    border-color: rgba(80, 217, 242, 0.25);
+    color: var(--cyan);
+    background: var(--cyan-soft);
+    box-shadow: inset 0 0 18px rgba(80, 217, 242, 0.035);
 }
 
 .page {
     display: none;
+    width: min(100% - 48px, 1400px);
+    margin: 34px auto 64px;
+    animation: panel-in 240ms ease-out both;
 }
 
-.page.active {
-    display: block;
+.page.active { display: block; }
+
+@keyframes panel-in {
+    from { opacity: 0; transform: translateY(7px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .page h2 {
-    font-size: 24px;
-    margin-bottom: 22px;
-    color: #1769aa;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 20px;
+    color: #dff4fa;
+    font-size: clamp(19px, 2vw, 24px);
+    font-weight: 650;
+    letter-spacing: 0.01em;
 }
 
-
-/* =========================
-   CONFIG CARD
-========================= */
+.page h2::before {
+    width: 8px;
+    height: 8px;
+    border: 2px solid var(--cyan);
+    border-radius: 2px;
+    box-shadow: 0 0 12px rgba(80, 217, 242, 0.5);
+    content: "";
+    transform: rotate(45deg);
+}
 
 .config-card,
 .form-card {
-    background-color: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-    max-width: 650px;
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+    padding: clamp(20px, 3vw, 34px);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: linear-gradient(145deg, rgba(17, 37, 56, 0.97), rgba(9, 23, 37, 0.96));
+    box-shadow: var(--shadow);
+}
+
+.config-card::before,
+.form-card::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), rgba(80, 217, 242, 0.12) 55%, transparent);
+    content: "";
+}
+
+.config-card {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
 }
 
 .config-card p,
-.form-card p {
-    margin-bottom: 18px;
-    font-size: 16px;
-    line-height: 1.6;
+.form-card > p {
+    min-width: 0;
+    margin: 0;
+    padding: 16px 18px;
+    border: 1px solid rgba(124, 172, 202, 0.12);
+    border-radius: 9px;
+    background: rgba(4, 15, 25, 0.44);
+    line-height: 1.5;
 }
 
 .config-card strong,
 .form-card strong {
-    display: inline-block;
-    min-width: 130px;
-    color: #34495e;
+    display: block;
+    min-width: 0;
+    margin-bottom: 9px;
+    color: #7892a5;
+    font: 600 10px/1.4 Consolas, "Courier New", monospace;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
 .config-card span,
 .form-card span {
-    color: #1769aa;
-    font-weight: 600;
+    color: #e6f5fa;
+    font: 600 clamp(17px, 2vw, 22px)/1.3 Consolas, "Courier New", monospace;
+    overflow-wrap: anywhere;
 }
 
-
-/* =========================
-   FORM
-========================= */
-
-form {
-    margin-top: 25px;
+#light {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 26px;
+    padding: 3px 10px;
+    border: 1px solid rgba(158, 232, 111, 0.28);
+    border-radius: 99px;
+    color: var(--green);
+    background: var(--green-soft);
+    font-size: 13px;
+    text-transform: uppercase;
 }
 
-label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: #34495e;
-}
-
-input {
-    width: 100%;
-    padding: 13px;
-    border: 1px solid #ccd6e0;
-    border-radius: 8px;
-    font-size: 16px;
-    margin-bottom: 18px;
-    outline: none;
-    transition: 0.3s;
-}
-
-input:focus {
-    border-color: #3498db;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
-}
-
-
-/* =========================
-   BUTTONS
-========================= */
-
-button {
-    cursor: pointer;
-    font-family: inherit;
+#light::before {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 10px currentColor;
+    content: "";
 }
 
 .config-card button,
 .form-card button,
 #refreshLogsBtn,
 .pagination button {
-    background-color: #1769aa;
-    color: white;
-    border: none;
-    padding: 12px 20px;
+    min-height: 42px;
+    padding: 0 17px;
+    border: 1px solid rgba(80, 217, 242, 0.25);
     border-radius: 8px;
-    font-size: 14px;
-    transition: 0.3s;
+    color: var(--cyan);
+    background: rgba(80, 217, 242, 0.09);
+    font: 650 12px/1 Inter, "Segoe UI", Arial, sans-serif;
+    letter-spacing: 0.02em;
+    transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
 }
 
 .config-card button:hover,
 .form-card button:hover,
 #refreshLogsBtn:hover,
-.pagination button:hover {
-    background-color: #0f4f85;
+.pagination button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    border-color: rgba(80, 217, 242, 0.55);
+    background: rgba(80, 217, 242, 0.16);
 }
 
-button:disabled {
-    background-color: #b8c5d1;
-    cursor: not-allowed;
+.config-card button { justify-self: start; }
+
+.config-card #configMessage,
+.form-card #formMessage {
+    align-self: center;
+    color: var(--muted);
+    font-size: 12px;
 }
 
+.form-card {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
 
-/* =========================
-   TABLE
-========================= */
+.form-card form {
+    grid-column: 1 / -1;
+    margin: 8px 0 0;
+    padding: 20px;
+    border: 1px solid rgba(124, 172, 202, 0.12);
+    border-radius: 10px;
+    background: rgba(4, 15, 25, 0.44);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #9ab0bf;
+    font: 600 11px/1.4 Consolas, "Courier New", monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+input[type="number"] {
+    display: block;
+    width: 100%;
+    min-height: 52px;
+    margin: 0 0 14px;
+    padding: 0 15px;
+    border: 1px solid rgba(124, 172, 202, 0.24);
+    border-radius: 8px;
+    outline: none;
+    color: var(--text);
+    background: #081522;
+    font: 600 20px/1 Consolas, "Courier New", monospace;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+input[type="number"]:focus {
+    border-color: rgba(80, 217, 242, 0.72);
+    box-shadow: 0 0 0 3px rgba(80, 217, 242, 0.12);
+}
+
+input::placeholder { color: #4f687a; }
+
+#submitTemperatureBtn {
+    border-color: rgba(158, 232, 111, 0.34);
+    color: #d8ffc0;
+    background: rgba(158, 232, 111, 0.12);
+}
+
+#submitTemperatureBtn:hover {
+    border-color: rgba(158, 232, 111, 0.62);
+    background: rgba(158, 232, 111, 0.2);
+}
 
 .table-container {
     width: 100%;
-    overflow-x: auto;
-    background-color: white;
+    overflow: auto;
+    border: 1px solid var(--line);
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    background: rgba(9, 22, 35, 0.92);
+    box-shadow: var(--shadow);
 }
 
 table {
     width: 100%;
+    min-width: 680px;
     border-collapse: collapse;
-    min-width: 650px;
+    text-align: left;
 }
 
-thead {
-    background-color: #1769aa;
-    color: white;
+thead { background: rgba(80, 217, 242, 0.08); }
+
+th {
+    color: #8ca8b9;
+    font: 600 10px/1.4 Consolas, "Courier New", monospace;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
 }
 
-th,
+th, td {
+    padding: 15px 18px;
+    border-bottom: 1px solid rgba(124, 172, 202, 0.1);
+    text-align: left;
+}
+
 td {
-    padding: 15px;
-    text-align: center;
-    border-bottom: 1px solid #e5eaf0;
-    font-size: 14px;
+    color: #c8dce5;
+    font: 13px/1.5 Consolas, "Courier New", monospace;
 }
 
-tbody tr:hover {
-    background-color: #f0f7fd;
-}
+tbody tr { transition: background 140ms ease; }
+tbody tr:hover { background: rgba(80, 217, 242, 0.055); }
+tbody tr:last-child td { border-bottom: 0; }
 
-tbody tr:last-child td {
-    border-bottom: none;
-}
-
-
-/* =========================
-   PAGINATION
-========================= */
+tbody td:last-child { color: var(--cyan); }
 
 .pagination {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 18px;
-    margin: 25px 0;
+    justify-content: flex-end;
+    gap: 10px;
+    margin: 18px 0;
 }
+
+.pagination button { min-height: 36px; padding: 0 13px; }
+.pagination button:disabled { opacity: 0.38; cursor: not-allowed; }
 
 #pageInfo {
-    font-weight: bold;
-    color: #34495e;
+    min-width: 74px;
+    color: var(--muted);
+    font: 11px/1 Consolas, "Courier New", monospace;
+    text-align: center;
 }
 
-#refreshLogsBtn {
-    display: block;
-    margin: 0 auto;
-}
-
-
-/* =========================
-   MESSAGE
-========================= */
+#refreshLogsBtn { display: block; margin-left: auto; }
 
 #configMessage,
 #formMessage,
 #logsMessage {
-    margin-top: 15px;
-    font-size: 14px;
-    color: #526579;
+    color: var(--muted);
+    font-size: 12px;
 }
 
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    text-align: center;
-    padding: 22px;
-    margin-top: 50px;
-    background-color: white;
-    color: #7b8794;
-    font-size: 14px;
+:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
 }
 
-
-/* =========================
-   RESPONSIVE DESIGN
-========================= */
-
-@media (max-width: 600px) {
-
+@media (max-width: 680px) {
     header {
-        padding: 25px 15px;
+        flex-wrap: wrap;
+        gap: 10px 14px;
+        width: min(100% - 28px, 1400px);
+        min-height: 0;
+        padding: 22px 2px 18px;
     }
 
-    header h1 {
-        font-size: 23px;
-    }
+    header::before { height: 38px; }
+    header h1 { font-size: 18px; }
+    header p { width: 100%; padding-left: 18px; text-align: left; font-size: 9px; }
+    header p::before { display: inline; margin-right: 8px; font-size: 9px; }
 
     .navbar {
-        flex-direction: column;
         gap: 5px;
+        width: min(100% - 28px, 1400px);
+        margin-top: 14px;
+        padding: 5px;
     }
 
-    .tab-btn {
-        width: 100%;
-    }
+    .tab-btn { flex: 1; gap: 6px; min-height: 42px; padding: 0 7px; font-size: 11px; }
+    .tab-btn::before { font-size: 9px; }
 
-    main {
-        margin: 25px auto;
-        padding: 0 15px;
-    }
+    .page { width: min(100% - 28px, 1400px); margin: 26px auto 44px; }
+    .page h2 { margin-bottom: 15px; }
 
-    .page h2 {
-        font-size: 21px;
-    }
+    .config-card, .form-card { grid-template-columns: 1fr; padding: 15px; }
+    .config-card p, .form-card > p { padding: 14px 15px; }
+    .config-card button { width: 100%; }
+    .form-card form { grid-column: 1; padding: 15px; }
 
-    .config-card,
-    .form-card {
-        padding: 20px;
-    }
+    th, td { padding: 13px 14px; }
+    .pagination { justify-content: space-between; }
+}
 
-    .config-card strong,
-    .form-card strong {
-        min-width: 110px;
-    }
-
-    .pagination {
-        gap: 10px;
-    }
-
-    .pagination button {
-        padding: 10px 14px;
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
     }
 }
 
