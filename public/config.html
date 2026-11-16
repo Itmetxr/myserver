@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone Monitoring - View Config</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Drone Monitoring Dashboard</h1>
+        <p>Monitor drone configuration and temperature logs</p>
+    </header>
+
+    <nav class="navbar">
+        <a href="/config.html" class="tab-btn active">View Config</a>
+        <a href="/form.html" class="tab-btn">Temperature Log</a>
+        <a href="/logs.html" class="tab-btn">View Logs</a>
+    </nav>
+
+    <section id="configPage" class="page active">
+        <h2>Drone Configuration</h2>
+
+        <div class="config-card">
+            <p><strong>Drone ID:</strong> <span id="droneId">-</span></p>
+            <p><strong>Drone Name:</strong> <span id="droneName">-</span></p>
+            <p><strong>Light:</strong> <span id="light">-</span></p>
+            <p><strong>Country:</strong> <span id="country">-</span></p>
+
+            <button id="refreshConfigBtn" type="button">Refresh Config</button>
+            <p id="configMessage"></p>
+        </div>
+    </section>
+</body>
+</html>
+
