@@ -8,16 +8,25 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1>Drone Monitoring Dashboard</h1>
-        <p>Monitor drone configuration and temperature logs</p>
+
+    <header class="site-header">
+        <div class="brand-copy">
+            <h1>Drone Monitoring Dashboard</h1>
+            <p>Monitor drone configuration and temperature logs</p>
+        </div>
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="/config" class="tab-btn">View Config</a>
+            <a href="/form" class="tab-btn">Log Form</a>
+            <a href="/logs" class="tab-btn active">View Logs</a>
+        </nav>
     </header>
 
-    <nav class="navbar">
-        <a href="/config.html" class="tab-btn">View Config</a>
-        <a href="/form.html" class="tab-btn">Temperature Log</a>
-        <a href="/logs.html" class="tab-btn active">View Logs</a>
-    </nav>
+    <div class="intro-overlay" id="introOverlay" aria-hidden="true">
+        <div class="intro-lockup">
+            <p class="intro-title">Drone Monitoring Dashboard</p>
+            <span class="intro-underline"></span>
+        </div>
+    </div>
 
     <section id="logsPage" class="page active">
         <h2>Temperature Logs</h2>
