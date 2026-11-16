@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone Monitoring Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <header>
+        <h1>Drone Monitoring Dashboard</h1>
+        <p>Monitor drone configuration and temperature logs</p>
+    </header>
+
+    <nav class="navbar">
+        <button class="tab-btn active" data-page="configPage">
+            View Config
+        </button>
+
+        <button class="tab-btn" data-page="temperaturePage">
+            Temperature Log
+        </button>
+
+        <button class="tab-btn" data-page="logsPage">
+            View Logs
+        </button>
+    </nav>
+
+    <!-- PAGE 1: VIEW CONFIG -->
+    <section id="configPage" class="page active">
+        <h2>Drone Configuration</h2>
+
+        <div class="config-card">
+            <p>
+                <strong>Drone ID:</strong>
+                <span id="droneId">-</span>
+            </p>
+
+            <p>
+                <strong>Drone Name:</strong>
+                <span id="droneName">-</span>
+            </p>
+
+            <p>
+                <strong>Light:</strong>
+                <span id="light">-</span>
+            </p>
+
+            <p>
+                <strong>Country:</strong>
+                <span id="country">-</span>
+            </p>
+
+            <button id="refreshConfigBtn" type="button">
+                Refresh Config
+            </button>
+
+            <p id="configMessage"></p>
+        </div>
+    </section>
+
+    <!-- PAGE 2: TEMPERATURE LOG FORM -->
+    <section id="temperaturePage" class="page">
+        <h2>Add Temperature Log</h2>
+
+        <div class="form-card">
+            <p>
+                <strong>Drone Name:</strong>
+                <span id="formDroneName">-</span>
+            </p>
+
+            <p>
+                <strong>Country:</strong>
+                <span id="formDroneCountry">-</span>
+            </p>
+
+            <form id="temperatureForm">
+                <label for="temperature">
+                    Temperature (°C)
+                </label>
+
+                <input
+                    type="number"
+                    id="temperature"
+                    name="temperature"
+                    step="0.1"
+                    placeholder="Enter temperature"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    id="submitTemperatureBtn"
+                >
+                    Submit Temperature
+                </button>
+            </form>
+
+            <p id="formMessage"></p>
+        </div>
+    </section>
+
+    <!-- PAGE 3: VIEW LOGS -->
+    <section id="logsPage" class="page">
+        <h2>Temperature Logs</h2>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Created</th>
+                        <th>Country</th>
+                        <th>Drone ID</th>
+                        <th>Drone Name</th>
+                        <th>Temperature (°C)</th>
+                    </tr>
+                </thead>
+
+                <tbody id="logsTableBody">
+                    <tr>
+                        <td colspan="5">
+                            No data available
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination">
+            <button id="prevBtn" type="button" disabled>
+                Previous
+            </button>
+
+            <span id="pageInfo">Page 1</span>
+
+            <button id="nextBtn" type="button">
+                Next
+            </button>
+        </div>
+
+        <button id="refreshLogsBtn" type="button">
+            Refresh Logs
+        </button>
+
+        <p id="logsMessage"></p>
+    </section>
+
+</body>
+</html>
+
