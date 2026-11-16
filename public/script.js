@@ -94,6 +94,16 @@ async function submitTemperature(event) {
         return;
     }
 
+    const submitBtn = document.getElementById("submitTemperatureBtn");
+    const submitProgress = document.getElementById("submitProgress");
+    const submitForm = document.getElementById("temperatureForm");
+    const setSubmitting = (isSubmitting) => {
+        if (submitBtn) submitBtn.disabled = isSubmitting;
+        if (submitProgress) submitProgress.hidden = !isSubmitting;
+        if (submitForm) submitForm.setAttribute("aria-busy", String(isSubmitting));
+    };
+    setSubmitting(true);
+
     try {
         // 1. ดึงข้อมูล Drone Config ก่อนส่ง
         const configResponse = await fetch(`${API_URL}/configs/${DRONE_ID}`);
@@ -138,6 +148,9 @@ async function submitTemperature(event) {
     } catch (error) {
         console.error("Submit Error:", error);
         alert("Cannot submit temperature");
+    }
+    finally {
+        setSubmitting(false);
     }
 }
 
