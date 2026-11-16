@@ -1,4 +1,5 @@
-# Drone Monitoring Dashboard by ณัฐธิดา กาญจนาลิขิต 67010305
+# Drone Monitoring Dashboard 
+by ณัฐธิดา กาญจนาลิขิต 67010305
 
 แดชบอร์ดสำหรับดูการตั้งค่าโดรน บันทึกอุณหภูมิ และตรวจสอบประวัติการบันทึก ขับเคลื่อนด้วย Express และ deploy บน Vercel
 
