@@ -12,7 +12,7 @@ Dashboard for viewing drone configuration, submitting temperature logs, and revi
 
 ## ภาษาไทย
 
-### ความสามารถ
+### ฟีเจอร์ต่างๆ
 
 - แสดงข้อมูล Drone ID, ชื่อโดรน, สถานะไฟ และประเทศ
 - ส่งค่าบันทึกอุณหภูมิของโดรน
