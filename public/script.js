@@ -221,6 +221,21 @@ function updatePagination(logs) {
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", () => {
+    const introOverlay = document.getElementById("introOverlay");
+    if (introOverlay) {
+        const finishIntro = () => { introOverlay.hidden = true; };
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        if (reducedMotion) {
+            finishIntro();
+        } else {
+            introOverlay.addEventListener("animationend", (event) => {
+                if (event.animationName === "intro-dismiss") finishIntro();
+            });
+            window.setTimeout(finishIntro, 3000);
+        }
+    }
+
     // 1. เรียก Setup หาค่า DRONE_ID จาก Server ก่อน
     initSetup();
 
