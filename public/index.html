@@ -11,24 +11,24 @@
 
 <body>
 
-    <header>
-        <h1>Drone Monitoring Dashboard</h1>
-        <p>Monitor drone configuration and temperature logs</p>
+    <header class="site-header">
+        <div class="brand-copy">
+            <h1>Drone Monitoring Dashboard</h1>
+            <p>Monitor drone configuration and temperature logs</p>
+        </div>
+        <nav class="navbar" aria-label="Main navigation">
+            <button class="tab-btn active" data-page="configPage">View Config</button>
+            <button class="tab-btn" data-page="temperaturePage">Log Form</button>
+            <button class="tab-btn" data-page="logsPage">View Logs</button>
+        </nav>
     </header>
 
-    <nav class="navbar">
-        <button class="tab-btn active" data-page="configPage">
-            View Config
-        </button>
-
-        <button class="tab-btn" data-page="temperaturePage">
-            Temperature Log
-        </button>
-
-        <button class="tab-btn" data-page="logsPage">
-            View Logs
-        </button>
-    </nav>
+    <div class="intro-overlay" id="introOverlay" aria-hidden="true">
+        <div class="intro-lockup">
+            <p class="intro-title">Drone Monitoring Dashboard</p>
+            <span class="intro-underline"></span>
+        </div>
+    </div>
 
     <!-- PAGE 1: VIEW CONFIG -->
     <section id="configPage" class="page active">
