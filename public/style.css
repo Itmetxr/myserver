@@ -277,6 +277,8 @@ input[type="number"]:focus {
 input::placeholder { color: #8b9aa3; }
 
 #submitTemperatureBtn {
+    display: block;
+    margin-left: auto;
     border-color: var(--blue);
     color: #ffffff;
     background: var(--blue);
