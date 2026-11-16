@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone Monitoring - Add Log</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Drone Monitoring Dashboard</h1>
+        <p>Monitor drone configuration and temperature logs</p>
+    </header>
+
+    <nav class="navbar">
+        <a href="/config.html" class="tab-btn">View Config</a>
+        <a href="/form.html" class="tab-btn active">Temperature Log</a>
+        <a href="/logs.html" class="tab-btn">View Logs</a>
+    </nav>
+
+    <section id="temperaturePage" class="page active">
+        <h2>Add Temperature Log</h2>
+
+        <div class="form-card">
+            <p><strong>Drone Name:</strong> <span id="formDroneName">-</span></p>
+            <p><strong>Country:</strong> <span id="formDroneCountry">-</span></p>
+
+            <form id="temperatureForm">
+                <label for="temperature">Temperature (°C)</label>
+                <input
+                    type="number"
+                    id="temperature"
+                    name="temperature"
+                    step="0.1"
+                    placeholder="Enter temperature"
+                    required
+                >
+                <button type="submit" id="submitTemperatureBtn">Submit Temperature</button>
+            </form>
+
+            <p id="formMessage"></p>
+        </div>
+    </section>
+</body>
+</html>
+
