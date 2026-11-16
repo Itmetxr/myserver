@@ -1,15 +1,15 @@
 :root {
     color-scheme: dark;
-    --bg: #171c21;
-    --panel: #20272e;
-    --panel-raised: #262f37;
-    --line: #37424b;
-    --text: #e2e7e9;
-    --muted: #9aa6ad;
-    --accent: #82c7c2;
-    --accent-soft: rgba(130, 199, 194, 0.12);
-    --green: #a6cf9b;
-    --amber: #e5b66d;
+    --bg: #111912;
+    --panel: #1a251c;
+    --panel-raised: #202d22;
+    --line: #354738;
+    --text: #e0eadf;
+    --muted: #9aaa98;
+    --accent: #91c779;
+    --accent-soft: rgba(145, 199, 121, 0.13);
+    --green: #a6cf82;
+    --amber: #d6b66f;
     --shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
 }
 
@@ -194,10 +194,10 @@ header p::before { display: none; }
 .pagination button {
     min-height: 40px;
     padding: 0 15px;
-    border: 1px solid #52616b;
+    border: 1px solid #536a50;
     border-radius: 5px;
     color: var(--text);
-    background: #303b43;
+    background: #303e31;
     font: 600 13px/1 "Segoe UI", Arial, sans-serif;
     transition: background 150ms ease, border-color 150ms ease;
 }
@@ -206,8 +206,8 @@ header p::before { display: none; }
 .form-card button:hover,
 #refreshLogsBtn:hover,
 .pagination button:hover:not(:disabled) {
-    border-color: #71828c;
-    background: #39464f;
+    border-color: #789573;
+    background: #394a38;
 }
 
 .config-card button { justify-self: start; }
@@ -249,7 +249,7 @@ input[type="number"] {
     min-height: 48px;
     margin: 0 0 13px;
     padding: 0 13px;
-    border: 1px solid #48545d;
+    border: 1px solid #4d6449;
     border-radius: 5px;
     outline: none;
     color: var(--text);
@@ -260,20 +260,20 @@ input[type="number"] {
 
 input[type="number"]:focus {
     border-color: var(--accent);
-    box-shadow: 0 0 0 2px rgba(130, 199, 194, 0.15);
+    box-shadow: 0 0 0 2px rgba(145, 199, 121, 0.17);
 }
 
 input::placeholder { color: #7b878e; }
 
 #submitTemperatureBtn {
-    border-color: #477d77;
+    border-color: #557847;
     color: #d4ece9;
-    background: #31534f;
+    background: #304b2c;
 }
 
 #submitTemperatureBtn:hover {
-    border-color: #619790;
-    background: #3b625d;
+    border-color: #6b935d;
+    background: #3c5c35;
 }
 
 .table-container {
