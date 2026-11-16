@@ -158,6 +158,10 @@ for (const page of ['config', 'form', 'logs']) {
 }
 
 app.use((req, res) => {
+  if (req.path.startsWith('/api/') || req.path.startsWith('/configs/') || req.path.startsWith('/status/') || req.path.startsWith('/logs/')) {
+    return res.status(404).json({ error: 'not found' });
+  }
+  return res.status(404).send('Page not found');
 });
 
 export default app;
@@ -166,6 +170,7 @@ if (process.env.VERCEL !== '1') {
   const port = process.env.PORT || 8000;
   app.listen(port, () => console.log(`Server is running on ${port}`));
 }
+
 
 
 
