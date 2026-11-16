@@ -37,16 +37,27 @@
 
             <form id="temperatureForm">
                 <label for="temperature">Temperature (°C)</label>
-                <input
-                    type="number"
-                    id="temperature"
-                    name="temperature"
-                    step="0.1"
-                    placeholder="Enter temperature"
-                    required
-                >
-                <button type="submit" id="submitTemperatureBtn">Submit Temperature</button>
-            <p id="formMessage" role="status" aria-live="polite"></p>
+
+                <div class="temperature-entry">
+                    <input
+                        type="number"
+                        id="temperature"
+                        name="temperature"
+                        step="0.1"
+                        placeholder="Enter temperature"
+                        required
+                    >
+                    <button type="submit" id="submitTemperatureBtn">Submit Temperature</button>
+                </div>
+
+                <div id="submitProgress" class="submit-progress" role="status" aria-live="polite" hidden>
+                    <span class="submit-progress-label">Sending temperature data...</span>
+                    <span class="submit-progress-track" role="progressbar" aria-label="Sending temperature data" aria-valuetext="In progress">
+                        <span class="submit-progress-indicator"></span>
+                    </span>
+                </div>
+
+                <p id="formMessage" role="status" aria-live="polite"></p>
             </form>
 
             
