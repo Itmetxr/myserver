@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone Monitoring - View Logs</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Drone Monitoring Dashboard</h1>
+        <p>Monitor drone configuration and temperature logs</p>
+    </header>
+
+    <nav class="navbar">
+        <a href="/config.html" class="tab-btn">View Config</a>
+        <a href="/form.html" class="tab-btn">Temperature Log</a>
+        <a href="/logs.html" class="tab-btn active">View Logs</a>
+    </nav>
+
+    <section id="logsPage" class="page active">
+        <h2>Temperature Logs</h2>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Created</th>
+                        <th>Country</th>
+                        <th>Drone ID</th>
+                        <th>Drone Name</th>
+                        <th>Temperature (°C)</th>
+                    </tr>
+                </thead>
+                <tbody id="logsTableBody">
+                    <tr>
+                        <td colspan="5">No data available</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination">
+            <button id="prevBtn" type="button" disabled>Previous</button>
+            <span id="pageInfo">Page 1</span>
+            <button id="nextBtn" type="button">Next</button>
+        </div>
+
+        <button id="refreshLogsBtn" type="button">Refresh Logs</button>
+        <p id="logsMessage"></p>
+    </section>
+</body>
+</html>
+
