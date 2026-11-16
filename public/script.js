@@ -95,11 +95,12 @@ async function submitTemperature(event) {
     }
 
     const submitBtn = document.getElementById("submitTemperatureBtn");
-    const submitProgress = document.getElementById("submitProgress");
     const submitForm = document.getElementById("temperatureForm");
     const setSubmitting = (isSubmitting) => {
-        if (submitBtn) submitBtn.disabled = isSubmitting;
-        if (submitProgress) submitProgress.hidden = !isSubmitting;
+        if (submitBtn) {
+            submitBtn.disabled = isSubmitting;
+            submitBtn.classList.toggle("is-submitting", isSubmitting);
+        }
         if (submitForm) submitForm.setAttribute("aria-busy", String(isSubmitting));
     };
     setSubmitting(true);
