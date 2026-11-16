@@ -1,18 +1,16 @@
 :root {
     color-scheme: dark;
-    --bg: #07111d;
-    --panel: rgba(13, 27, 42, 0.9);
-    --panel-raised: #102237;
-    --panel-soft: #0b1928;
-    --line: rgba(124, 172, 202, 0.17);
-    --text: #e4f1f6;
-    --muted: #8398a9;
-    --cyan: #50d9f2;
-    --cyan-soft: rgba(80, 217, 242, 0.12);
-    --green: #9ee86f;
-    --green-soft: rgba(158, 232, 111, 0.12);
-    --amber: #f6bd60;
-    --shadow: 0 22px 60px rgba(0, 0, 0, 0.3);
+    --bg: #171c21;
+    --panel: #20272e;
+    --panel-raised: #262f37;
+    --line: #37424b;
+    --text: #e2e7e9;
+    --muted: #9aa6ad;
+    --accent: #82c7c2;
+    --accent-soft: rgba(130, 199, 194, 0.12);
+    --green: #a6cf9b;
+    --amber: #e5b66d;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
 }
 
 * { box-sizing: border-box; }
@@ -20,199 +18,117 @@
 html { min-width: 320px; background: var(--bg); }
 
 body {
-    position: relative;
-    isolation: isolate;
     min-height: 100vh;
     margin: 0;
-    overflow-x: hidden;
     color: var(--text);
-    background:
-        radial-gradient(ellipse at 82% -15%, rgba(31, 122, 157, 0.22), transparent 38rem),
-        radial-gradient(ellipse at 0% 45%, rgba(20, 76, 103, 0.14), transparent 34rem),
-        var(--bg);
-    font-family: Inter, "Segoe UI", Arial, sans-serif;
-}
-
-body::before {
-    position: fixed;
-    z-index: -1;
-    inset: 0;
-    pointer-events: none;
-    background-image:
-        linear-gradient(rgba(92, 149, 178, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(92, 149, 178, 0.035) 1px, transparent 1px);
-    background-size: 34px 34px;
-    content: "";
-    mask-image: linear-gradient(to bottom, black, transparent 85%);
+    background: var(--bg);
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
 header {
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 24px;
-    width: min(100% - 48px, 1400px);
-    min-height: 116px;
+    width: min(100% - 48px, 1200px);
+    min-height: 94px;
     margin: 0 auto;
-    padding: 24px 6px;
+    padding: 20px 0;
     border-bottom: 1px solid var(--line);
     text-align: left;
 }
 
-header::before {
-    display: block;
-    flex: 0 0 auto;
-    width: 4px;
-    height: 46px;
-    border-radius: 4px;
-    background: linear-gradient(var(--cyan), var(--green));
-    box-shadow: 0 0 22px rgba(80, 217, 242, 0.4);
-    content: "";
-}
+header::before { display: none; }
 
 header h1 {
     flex: 1;
     margin: 0;
-    color: #f0f8fb;
-    font-family: "Segoe UI", Arial, sans-serif;
-    font-size: clamp(20px, 2vw, 27px);
-    font-weight: 700;
-    letter-spacing: 0.015em;
+    color: var(--text);
+    font-size: clamp(20px, 2vw, 25px);
+    font-weight: 600;
+    letter-spacing: 0;
 }
 
 header p {
+    max-width: 300px;
     margin: 0;
     color: var(--muted);
-    font-family: Consolas, "Courier New", monospace;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    line-height: 1.6;
+    font-size: 12px;
+    line-height: 1.5;
     text-align: right;
-    text-transform: uppercase;
 }
 
-header p::before {
-    display: block;
-    margin-bottom: 4px;
-    color: var(--green);
-    content: "MISSION CONTROL / IOTE";
-    font-size: 10px;
-}
+header p::before { display: none; }
 
 .navbar {
     display: flex;
     align-items: center;
-    gap: 8px;
-    width: min(100% - 48px, 1400px);
+    gap: 4px;
+    width: min(100% - 48px, 1200px);
     margin: 22px auto 0;
-    padding: 8px;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    background: rgba(9, 22, 35, 0.82);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
-    backdrop-filter: blur(14px);
+    padding: 0 0 10px;
+    border-bottom: 1px solid var(--line);
 }
 
 .tab-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    min-height: 43px;
-    padding: 0 18px;
-    border: 1px solid transparent;
-    border-radius: 8px;
-    color: #91a8b8;
+    min-height: 40px;
+    padding: 0 16px;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    color: var(--muted);
     background: transparent;
-    font: 600 13px/1 Inter, "Segoe UI", Arial, sans-serif;
+    font: 500 14px/1 "Segoe UI", Arial, sans-serif;
     text-decoration: none;
-    transition: color 160ms ease, background 160ms ease, border-color 160ms ease, transform 160ms ease;
+    transition: color 150ms ease, border-color 150ms ease;
 }
 
-.tab-btn::before {
-    color: #57768a;
-    font: 11px/1 Consolas, "Courier New", monospace;
-}
-
-.tab-btn[data-page="configPage"]::before,
-.tab-btn[href="/config.html"]::before { content: "01"; }
-.tab-btn[data-page="temperaturePage"]::before,
-.tab-btn[href="/form.html"]::before { content: "02"; }
-.tab-btn[data-page="logsPage"]::before,
-.tab-btn[href="/logs.html"]::before { content: "03"; }
+.tab-btn::before { display: none; }
 
 .tab-btn:hover {
-    transform: translateY(-1px);
-    border-color: var(--line);
     color: var(--text);
-    background: rgba(80, 217, 242, 0.06);
+    background: rgba(255, 255, 255, 0.035);
 }
 
 .tab-btn.active {
-    border-color: rgba(80, 217, 242, 0.25);
-    color: var(--cyan);
-    background: var(--cyan-soft);
-    box-shadow: inset 0 0 18px rgba(80, 217, 242, 0.035);
+    border-bottom-color: var(--accent);
+    color: var(--text);
+    background: transparent;
 }
 
 .page {
     display: none;
-    width: min(100% - 48px, 1400px);
-    margin: 34px auto 64px;
-    animation: panel-in 240ms ease-out both;
+    width: min(100% - 48px, 1200px);
+    margin: 30px auto 56px;
 }
 
 .page.active { display: block; }
 
-@keyframes panel-in {
-    from { opacity: 0; transform: translateY(7px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
 .page h2 {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 0 0 20px;
-    color: #dff4fa;
-    font-size: clamp(19px, 2vw, 24px);
-    font-weight: 650;
-    letter-spacing: 0.01em;
+    margin: 0 0 18px;
+    color: var(--text);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0;
 }
 
-.page h2::before {
-    width: 8px;
-    height: 8px;
-    border: 2px solid var(--cyan);
-    border-radius: 2px;
-    box-shadow: 0 0 12px rgba(80, 217, 242, 0.5);
-    content: "";
-    transform: rotate(45deg);
-}
+.page h2::before { display: none; }
 
 .config-card,
 .form-card {
-    position: relative;
-    overflow: hidden;
     max-width: 100%;
-    padding: clamp(20px, 3vw, 34px);
+    padding: 22px;
     border: 1px solid var(--line);
-    border-radius: 14px;
-    background: linear-gradient(145deg, rgba(17, 37, 56, 0.97), rgba(9, 23, 37, 0.96));
+    border-radius: 8px;
+    background: var(--panel);
     box-shadow: var(--shadow);
 }
 
 .config-card::before,
-.form-card::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, var(--cyan), rgba(80, 217, 242, 0.12) 55%, transparent);
-    content: "";
-}
+.form-card::before { display: none; }
 
 .config-card {
     display: grid;
@@ -224,10 +140,10 @@ header p::before {
 .form-card > p {
     min-width: 0;
     margin: 0;
-    padding: 16px 18px;
-    border: 1px solid rgba(124, 172, 202, 0.12);
-    border-radius: 9px;
-    background: rgba(4, 15, 25, 0.44);
+    padding: 15px 16px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--panel-raised);
     line-height: 1.5;
 }
 
@@ -235,17 +151,18 @@ header p::before {
 .form-card strong {
     display: block;
     min-width: 0;
-    margin-bottom: 9px;
-    color: #7892a5;
-    font: 600 10px/1.4 Consolas, "Courier New", monospace;
-    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.045em;
     text-transform: uppercase;
 }
 
 .config-card span,
 .form-card span {
-    color: #e6f5fa;
-    font: 600 clamp(17px, 2vw, 22px)/1.3 Consolas, "Courier New", monospace;
+    color: var(--text);
+    font: 500 clamp(16px, 2vw, 20px)/1.35 "Segoe UI", Arial, sans-serif;
     overflow-wrap: anywhere;
 }
 
@@ -254,11 +171,11 @@ header p::before {
     align-items: center;
     gap: 8px;
     min-height: 26px;
-    padding: 3px 10px;
-    border: 1px solid rgba(158, 232, 111, 0.28);
-    border-radius: 99px;
-    color: var(--green);
-    background: var(--green-soft);
+    padding: 3px 9px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    color: var(--muted);
+    background: rgba(255, 255, 255, 0.035);
     font-size: 13px;
     text-transform: uppercase;
 }
@@ -268,7 +185,6 @@ header p::before {
     height: 7px;
     border-radius: 50%;
     background: currentColor;
-    box-shadow: 0 0 10px currentColor;
     content: "";
 }
 
@@ -276,24 +192,22 @@ header p::before {
 .form-card button,
 #refreshLogsBtn,
 .pagination button {
-    min-height: 42px;
-    padding: 0 17px;
-    border: 1px solid rgba(80, 217, 242, 0.25);
-    border-radius: 8px;
-    color: var(--cyan);
-    background: rgba(80, 217, 242, 0.09);
-    font: 650 12px/1 Inter, "Segoe UI", Arial, sans-serif;
-    letter-spacing: 0.02em;
-    transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+    min-height: 40px;
+    padding: 0 15px;
+    border: 1px solid #52616b;
+    border-radius: 5px;
+    color: var(--text);
+    background: #303b43;
+    font: 600 13px/1 "Segoe UI", Arial, sans-serif;
+    transition: background 150ms ease, border-color 150ms ease;
 }
 
 .config-card button:hover,
 .form-card button:hover,
 #refreshLogsBtn:hover,
 .pagination button:hover:not(:disabled) {
-    transform: translateY(-1px);
-    border-color: rgba(80, 217, 242, 0.55);
-    background: rgba(80, 217, 242, 0.16);
+    border-color: #71828c;
+    background: #39464f;
 }
 
 .config-card button { justify-self: start; }
@@ -314,60 +228,60 @@ header p::before {
 .form-card form {
     grid-column: 1 / -1;
     margin: 8px 0 0;
-    padding: 20px;
-    border: 1px solid rgba(124, 172, 202, 0.12);
-    border-radius: 10px;
-    background: rgba(4, 15, 25, 0.44);
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--panel-raised);
 }
 
 label {
     display: block;
-    margin-bottom: 10px;
-    color: #9ab0bf;
-    font: 600 11px/1.4 Consolas, "Courier New", monospace;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    margin-bottom: 9px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.035em;
 }
 
 input[type="number"] {
     display: block;
     width: 100%;
-    min-height: 52px;
-    margin: 0 0 14px;
-    padding: 0 15px;
-    border: 1px solid rgba(124, 172, 202, 0.24);
-    border-radius: 8px;
+    min-height: 48px;
+    margin: 0 0 13px;
+    padding: 0 13px;
+    border: 1px solid #48545d;
+    border-radius: 5px;
     outline: none;
     color: var(--text);
-    background: #081522;
-    font: 600 20px/1 Consolas, "Courier New", monospace;
-    transition: border-color 160ms ease, box-shadow 160ms ease;
+    background: #171d22;
+    font: 500 18px/1 "Segoe UI", Arial, sans-serif;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
 }
 
 input[type="number"]:focus {
-    border-color: rgba(80, 217, 242, 0.72);
-    box-shadow: 0 0 0 3px rgba(80, 217, 242, 0.12);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(130, 199, 194, 0.15);
 }
 
-input::placeholder { color: #4f687a; }
+input::placeholder { color: #7b878e; }
 
 #submitTemperatureBtn {
-    border-color: rgba(158, 232, 111, 0.34);
-    color: #d8ffc0;
-    background: rgba(158, 232, 111, 0.12);
+    border-color: #477d77;
+    color: #d4ece9;
+    background: #31534f;
 }
 
 #submitTemperatureBtn:hover {
-    border-color: rgba(158, 232, 111, 0.62);
-    background: rgba(158, 232, 111, 0.2);
+    border-color: #619790;
+    background: #3b625d;
 }
 
 .table-container {
     width: 100%;
     overflow: auto;
     border: 1px solid var(--line);
-    border-radius: 12px;
-    background: rgba(9, 22, 35, 0.92);
+    border-radius: 7px;
+    background: var(--panel);
     box-shadow: var(--shadow);
 }
 
@@ -378,47 +292,47 @@ table {
     text-align: left;
 }
 
-thead { background: rgba(80, 217, 242, 0.08); }
+thead { background: #29323a; }
 
 th {
-    color: #8ca8b9;
-    font: 600 10px/1.4 Consolas, "Courier New", monospace;
-    letter-spacing: 0.11em;
+    color: #b0bbc1;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.045em;
     text-transform: uppercase;
 }
 
 th, td {
-    padding: 15px 18px;
-    border-bottom: 1px solid rgba(124, 172, 202, 0.1);
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--line);
     text-align: left;
 }
 
 td {
-    color: #c8dce5;
-    font: 13px/1.5 Consolas, "Courier New", monospace;
+    color: #d0d7da;
+    font: 13px/1.5 "Segoe UI", Arial, sans-serif;
 }
 
-tbody tr { transition: background 140ms ease; }
-tbody tr:hover { background: rgba(80, 217, 242, 0.055); }
+tbody tr { transition: background 120ms ease; }
+tbody tr:hover { background: rgba(255, 255, 255, 0.035); }
 tbody tr:last-child td { border-bottom: 0; }
-
-tbody td:last-child { color: var(--cyan); }
+tbody td:last-child { color: var(--accent); }
 
 .pagination {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 10px;
-    margin: 18px 0;
+    margin: 16px 0;
 }
 
 .pagination button { min-height: 36px; padding: 0 13px; }
-.pagination button:disabled { opacity: 0.38; cursor: not-allowed; }
+.pagination button:disabled { opacity: 0.42; cursor: not-allowed; }
 
 #pageInfo {
     min-width: 74px;
     color: var(--muted);
-    font: 11px/1 Consolas, "Courier New", monospace;
+    font-size: 12px;
     text-align: center;
 }
 
@@ -432,43 +346,40 @@ tbody td:last-child { color: var(--cyan); }
 }
 
 :focus-visible {
-    outline: 2px solid var(--cyan);
-    outline-offset: 3px;
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
 }
 
 @media (max-width: 680px) {
     header {
         flex-wrap: wrap;
-        gap: 10px 14px;
-        width: min(100% - 28px, 1400px);
+        gap: 8px 14px;
+        width: min(100% - 28px, 1200px);
         min-height: 0;
-        padding: 22px 2px 18px;
+        padding: 20px 0 16px;
     }
 
-    header::before { height: 38px; }
-    header h1 { font-size: 18px; }
-    header p { width: 100%; padding-left: 18px; text-align: left; font-size: 9px; }
-    header p::before { display: inline; margin-right: 8px; font-size: 9px; }
+    header h1 { font-size: 19px; }
+    header p { width: 100%; max-width: none; text-align: left; }
 
     .navbar {
-        gap: 5px;
-        width: min(100% - 28px, 1400px);
+        gap: 0;
+        width: min(100% - 28px, 1200px);
         margin-top: 14px;
-        padding: 5px;
+        padding-bottom: 6px;
     }
 
-    .tab-btn { flex: 1; gap: 6px; min-height: 42px; padding: 0 7px; font-size: 11px; }
-    .tab-btn::before { font-size: 9px; }
+    .tab-btn { flex: 1; min-height: 42px; padding: 0 7px; font-size: 12px; }
 
-    .page { width: min(100% - 28px, 1400px); margin: 26px auto 44px; }
-    .page h2 { margin-bottom: 15px; }
+    .page { width: min(100% - 28px, 1200px); margin: 24px auto 40px; }
+    .page h2 { margin-bottom: 14px; }
 
-    .config-card, .form-card { grid-template-columns: 1fr; padding: 15px; }
-    .config-card p, .form-card > p { padding: 14px 15px; }
+    .config-card, .form-card { grid-template-columns: 1fr; padding: 14px; }
+    .config-card p, .form-card > p { padding: 13px 14px; }
     .config-card button { width: 100%; }
-    .form-card form { grid-column: 1; padding: 15px; }
+    .form-card form { grid-column: 1; padding: 14px; }
 
-    th, td { padding: 13px 14px; }
+    th, td { padding: 12px; }
     .pagination { justify-content: space-between; }
 }
 
@@ -479,4 +390,3 @@ tbody td:last-child { color: var(--cyan); }
         transition-duration: 0.01ms !important;
     }
 }
-
