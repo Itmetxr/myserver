@@ -78,6 +78,11 @@ async function submitTemperature(event) {
 
     const tempInput = document.getElementById("temperature");
     const temperature = Number(tempInput.value);
+    const formMessage = document.getElementById("formMessage");
+    if (formMessage) {
+        formMessage.textContent = "";
+        formMessage.classList.remove("success");
+    }
 
     if (!Number.isFinite(temperature)) {
         alert("Please enter a valid temperature");
@@ -120,7 +125,10 @@ async function submitTemperature(event) {
             throw new Error("Failed to submit temperature");
         }
 
-        alert("Temperature submitted successfully!");
+        if (formMessage) {
+            formMessage.textContent = "Success — temperature log saved.";
+            formMessage.classList.add("success");
+        }
         tempInput.value = "";
 
         // Reload logs หลังบันทึกสำเร็จ
